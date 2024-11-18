@@ -28,11 +28,11 @@ class KnowledgeBase:
     def update_address(self, order_id, new_address=None, new_city=None, new_point=None):
         if order_id not in self.orders:
             return f"Замовлення з ID {order_id} не знайдено."
-    
+
         # Оновлення адреси
         if new_address:
             self.orders[order_id]["address"] = self.normalize_address(new_address)
-    
+
         # Оновлення міста
         if new_city:
             self.orders[order_id]["місто"] = new_city
@@ -46,14 +46,14 @@ class KnowledgeBase:
                     self.orders[order_id]["пункт"] = available_points[0]
                 else:
                     self.orders[order_id]["пункт"] = "Немає доступних пунктів"
-    
+
         # Оновлення пункту видачі (тільки якщо місто не змінювалось)
         if new_point and not new_city:
             if new_point in self.delivery_points.get(self.orders[order_id]["місто"], []):
                 self.orders[order_id]["пункт"] = new_point
             else:
                 return f"Пункт видачі '{new_point}' недоступний у місті {self.orders[order_id]['місто']}."
-    
+
         # Формування повідомлення про успішне оновлення
         updated_info = f"Зміни успішно внесено для замовлення {order_id}:\n"
         if new_address:
@@ -62,13 +62,10 @@ class KnowledgeBase:
             updated_info += f"- Місто: {self.orders[order_id]['місто']}\n"
         if new_point or new_city:
             updated_info += f"- Пункт видачі: {self.orders[order_id]['пункт']}\n"
-    
+
         return updated_info
 
-
-
-        
-        
+ 
     def normalize_address(self, address):
         if "Вул." in address and not address.startswith("Вул. "):
             address = address.replace("Вул.", "Вул. ")
