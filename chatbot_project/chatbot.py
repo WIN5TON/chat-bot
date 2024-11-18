@@ -62,7 +62,9 @@ class Chatbot:
         else:
             return None
 
+
     def run(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
         print("\033[1;36mПривіт! Як я можу допомогти?\033[0m")
         self.show_main_menu()
 
@@ -75,10 +77,40 @@ class Chatbot:
                 self.process_message(f"інформація про замовлення {order_id}")
             elif command == "A":
                 order_id = input("Введіть номер замовлення: ").strip()
-                new_address = input("Введіть нову адресу: ").strip()
                 self.context["order_id"] = order_id
-                self.context["new_address"] = new_address
-                self.process_message(f"змінити адресу на {new_address}")
+
+                # Уточнення, що змінювати
+                print("\n\033[1;33m\nЩо ви хочете змінити?\033[0m")
+                print("1. Адресу")
+                print("2. Місто")
+                print("3. Пункт видачі")
+                print("4. Все")
+
+                choice = input("\033[1;36mВиберіть опцію (1/2/3/4): \033[0m").strip()
+                new_address = None
+                new_city = None
+                new_point = None
+
+                if choice == "1":
+                    new_address = input("Введіть нову адресу: ").strip()
+                elif choice == "2":
+                    new_city = input("Введіть нове місто: ").strip()
+                elif choice == "3":
+                    new_point = input("Введіть новий пункт видачі: ").strip()
+                elif choice == "4":
+                    new_address = input("Введіть нову адресу: ").strip()
+                    new_city = input("Введіть нове місто: ").strip()
+                    new_point = input("Введіть новий пункт видачі: ").strip()
+                else:
+                    print("\033[1;31mНевірний вибір. Спробуйте ще раз.\033[0m")
+                    continue
+
+                # Збереження контексту для зміни
+                self.context["new_address"] = new_address if new_address else None
+                self.context["new_city"] = new_city if new_city else None
+                self.context["new_point"] = new_point if new_point else None
+
+                self.process_message(f"змінити адресу")
             elif command == "P":
                 city = input("Введіть місто: ").strip()
                 self.context["city"] = city

@@ -10,9 +10,12 @@ class ResponseGenerator:
             return self.knowledge_base.get_order_info(order_id)
 
         elif "змінити адресу" in message:
-            new_address = context.get("new_address", "Невідомо")
-            order_id = context.get("order_id", "Невідомо")
-            return self.knowledge_base.update_address(order_id, new_address)
+            new_address = context.get("new_address")
+            new_city = context.get("new_city")
+            new_point = context.get("new_point")
+            order_id = context.get("order_id")
+            return self.knowledge_base.update_address(order_id, new_address, new_city, new_point)
+
 
         elif "пункти видачі" in message:
             city = context.get("city", "Невідомо")
