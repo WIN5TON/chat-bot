@@ -62,7 +62,6 @@ class Chatbot:
         else:
             return None
 
-
     def run(self):
         os.system('cls' if os.name == 'nt' else 'clear')
         print("\033[1;36mПривіт! Як я можу допомогти?\033[0m")

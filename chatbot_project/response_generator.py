@@ -16,7 +16,6 @@ class ResponseGenerator:
             order_id = context.get("order_id")
             return self.knowledge_base.update_address(order_id, new_address, new_city, new_point)
 
-
         elif "пункти видачі" in message:
             city = context.get("city", "Невідомо")
             points = self.knowledge_base.get_delivery_points(city)

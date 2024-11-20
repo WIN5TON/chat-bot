@@ -5,7 +5,7 @@ class KnowledgeBase:
             "456": {"status": "готується", "delivery_time": "Немає", "address": "Вул. Соснова 456", "місто": "Львів", "пункт": "Пункт D"},
             "789": {"status": "відправлено", "delivery_time": "18:30", "address": "Вул. Дубова 789", "місто": "Київ", "пункт": "Пункт B"},
         }
-        
+
         self.delivery_points = {
             "Київ": ["Пункт A", "Пункт B", "Пункт C"],
             "Львів": ["Пункт D", "Пункт E", "Пункт F"]
@@ -23,7 +23,6 @@ class KnowledgeBase:
                     f"Пункт видачі: {order['пункт']}")
         else:
             return "Замовлення не знайдено."
-
 
     def update_address(self, order_id, new_address=None, new_city=None, new_point=None):
         if order_id not in self.orders:
@@ -65,7 +64,6 @@ class KnowledgeBase:
 
         return updated_info
 
- 
     def normalize_address(self, address):
         if "Вул." in address and not address.startswith("Вул. "):
             address = address.replace("Вул.", "Вул. ")
