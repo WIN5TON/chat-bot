@@ -45,6 +45,14 @@ class Chatbot:
         print("Q - Вийти з чату")
         print("-" * 40)
 
+    def show_address_change_menu(self):
+        print("\n\033[1;33m\nЩо ви хочете змінити?\033[0m")
+        print("1. Адресу")
+        print("2. Місто")
+        print("3. Пункт видачі")
+        print("4. Все")
+        print("-" * 40)
+
     def extract_order_id(self, message):
         numbers = ''.join([c for c in message if c.isdigit()])
         return numbers if numbers else None
@@ -78,12 +86,8 @@ class Chatbot:
                 order_id = input("Введіть номер замовлення: ").strip()
                 self.context["order_id"] = order_id
 
-                # Уточнення, що змінювати
-                print("\n\033[1;33m\nЩо ви хочете змінити?\033[0m")
-                print("1. Адресу")
-                print("2. Місто")
-                print("3. Пункт видачі")
-                print("4. Все")
+                # Виклик нового методу для відображення меню
+                self.show_address_change_menu()
 
                 choice = input("\033[1;36mВиберіть опцію (1/2/3/4): \033[0m").strip()
                 new_address = None
