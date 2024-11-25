@@ -39,19 +39,32 @@ class Chatbot:
 
     def show_main_menu(self):
         print("\n\033[1;33mОсь доступні команди:\033[0m")
-        print("I - Інформація про замовлення")
-        print("A - Змінити адресу")
-        print("P - Пункти видачі")
-        print("Q - Вийти з чату")
+        print("[I] - Інформація про замовлення")
+        print("[A] - Змінити адресу")
+        print("[P] - Пункти видачі")
+        print("[Q] - Вийти з чату")
         print("-" * 40)
 
     def show_address_change_menu(self):
         print("\n\033[1;33m\nЩо ви хочете змінити?\033[0m")
-        print("1. Адресу")
-        print("2. Місто")
-        print("3. Пункт видачі")
-        print("4. Все")
+        print("[1] Адресу")
+        print("[2] Місто")
+        print("[3] Пункт видачі")
+        print("[4] Все")
         print("-" * 40)
+        
+    @staticmethod
+    def display_chatbot_banner():
+        banner = """
+         ██████╗██╗  ██╗ █████╗ ████████╗██████╗  ██████╗ ████████╗
+        ██╔════╝██║  ██║██╔══██╗╚══██╔══╝██╔══██╗██╔═══██╗╚══██╔══╝
+        ██║     ███████║███████║   ██║   ██████╔╝██║   ██║   ██║   
+        ██║     ██╔══██║██╔══██║   ██║   ██╔══██╗██║   ██║   ██║   
+        ╚██████╗██║  ██║██║  ██║   ██║   ██████╔╝╚██████╔╝   ██║   
+         ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═════╝  ╚═════╝    ╚═╝   
+        """
+        print("\033[1;36m" + banner + "\033[0m")  # Блакитний текст із жирним шрифтом
+
 
     def extract_order_id(self, message):
         numbers = ''.join([c for c in message if c.isdigit()])
@@ -72,6 +85,7 @@ class Chatbot:
 
     def run(self):
         os.system('cls' if os.name == 'nt' else 'clear')
+        self.display_chatbot_banner()
         print("\033[1;36mПривіт! Як я можу допомогти?\033[0m")
         self.show_main_menu()
 
@@ -86,7 +100,6 @@ class Chatbot:
                 order_id = input("Введіть номер замовлення: ").strip()
                 self.context["order_id"] = order_id
 
-                # Виклик нового методу для відображення меню
                 self.show_address_change_menu()
 
                 choice = input("\033[1;36mВиберіть опцію (1/2/3/4): \033[0m").strip()
