@@ -50,7 +50,6 @@ class KnowledgeBase:
         return self._build_update_message(order_id, new_address, new_city, new_point)
 
     def _update_city_and_point(self, order, new_city, new_point):
-        """Оновлює місто і перевіряє доступність пункту видачі."""
         order["місто"] = new_city
         if new_point and new_point not in self.delivery_points.get(new_city, []):
             return f"Пункт видачі '{new_point}' недоступний у місті {new_city}."

@@ -1,5 +1,3 @@
-import random
-
 
 class ResponseGenerator:
     def __init__(self, knowledge_base):
@@ -22,9 +20,3 @@ class ResponseGenerator:
             city = context.get("city", "Невідомо")
             points = self.knowledge_base.get_delivery_points(city)
             return f"Доступні пункти видачі в {city}: {', '.join(points)}" if points else f"Немає доступних пунктів видачі для міста {city}."
-
-        return random.choice([
-            "Перепрошую, я не розумію вашого запиту. Спробуйте ще раз.",
-            "Не зовсім зрозумів вас, будь ласка, уточніть.",
-            "Ой, що-то я заплутався, давайте спробуємо ще раз!"
-        ])
